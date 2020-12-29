@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calorie Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <style>
+        .container{
+            background-color:rgba(204, 213, 227 , 0.8);
+            margin-top: 50px;
+        }
+        body{
+            background-image: url("https://images.all-free-download.com/images/graphicthumb/fast_food_background_various_symbols_sketch_repeating_design_6828045.jpg");
+            background-repeat: repeat;
+        }
+        .badgebox
+
+{
+    opacity: 0;
+}
+
+.badgebox + .badge
+{
+    /* Move the check mark away when unchecked */
+    text-indent: -999999px;
+    /* Makes the badge's width stay the same checked and unchecked */
+	width: 27px;
+}
+
+.badgebox:focus + .badge
+{
+    /* Set something to make the badge looks focused */
+    /* This really depends on the application, in my case it was: */
+
+    /* Adding a light border */
+    box-shadow: inset 0px 0px 5px;
+    /* Taking the difference out of the padding */
+}
+
+.badgebox:checked + .badge
+{
+    /* Move the check mark back when checked */
+	text-indent: 0;
+}
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <a class="navbar-brand" href="#">Calorie Calculator</a>
+
+</nav>
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+
+
+
+          <form method="post">
+                     <h1 class="mt-5">Select what did you eat today</h1>
+           {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags}}" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
+</ul>
+{% endif %}
+              <br>
+              {% csrf_token %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+$('select').selectpicker();
+    })
+</script>
+<select class="selectpicker" name="foods" multiple data-live-search="true">
+    {% for value in values %}
+    <option>{{ value }}</option>
+    {% endfor %}
+
+
+
+</select>
+
+              <h4 class="mt-5">Enter your features</h4>
+
+
+                <label for="age">Age:</label>
+              <input class="form" type="number" min="0" name="age" id="age" required>
+                <label for="height">Height:</label>
+              <input class="form" type="number" min="0" name="height" id="height" required>
+                <label for="limit">Weight:</label>
+              <input class="form" type="number" min="0" name="weight" id="weight" required>
+                          <h4 class="mt-5">Select your gender</h4>
+
+           <div class="radio">
+              <label><input type="radio" name="gender" value="male" checked> Male</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="gender" value="female" > Female</label>
+            </div>
+
+
+              <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
+          <br>
+{% if rate %}
+    <h6>Calories you took today: {{ calorie }} kcal</h6>
+    <h6>Protein you took today: {{ protein }} g</h6>
+    <h6>Calories you need to take today: {{ required_calorie }} kcal</h6>
+    {% if calorie < required_calorie %}
+        <h6 class="text-danger">You need more {{ status }}  calories</h6>
+    {% elif calorie > required_calorie %}
+        <h6 class="text-danger">You took {{ status }} more calories</h6>
+        {% else %}
+                <h6 class="text-green">Perfect!</h6>
+    {% endif %}
+    <br>
+    <h6>Your calorie need rate</h6>
+<div class="progress">
+  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: {{ rate }}%" aria-valuenow="{{ rate }}" aria-valuemin="0" aria-valuemax="100">{{ rate }}%</div>
+</div>
+{% endif %}
+<br><br>
+
+      </div>
+    </div>
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
